@@ -1,0 +1,14 @@
+requires python 2.7 or python with argparse module installed.
+
+requires construct library.
+http://construct.wikispaces.com/
+https://github.com/MostAwesomeDude/construct
+
+
+g++ .o files are not supported but may work. only .o files created by
+mingw-gcc with .c files have been tested.
+
+Currently it does not check for redefined symbol errors. So be careful.
+
+Project by Andrew Chambers. Source code is public domain, but try to give credit
+if its been useful.
