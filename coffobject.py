@@ -281,7 +281,7 @@ class CoffObject(object):
         return sec.relocations
     def symbolToName(self,s):
         if s.name_union.int_name.zeros == 0:
-            strings = self.string_table.split('\0')
+            strings = self.symbol_table.string_table.strings.split('\0')
             return strings[s.name_union.int_name.offset]
         else:
             return s.name_union.name
@@ -291,8 +291,18 @@ class CoffObject(object):
             while 1:
                 s = it.next()
                 if s.name_union.int_name.zeros == 0:
-                    strings = self.string_table.split('\0')
-                    n = strings[s.name_union.int_name.offset]
+                    #print self.symbol_table.string_table
+                    strings = self.symbol_table.string_table.strings.split('\0')
+                    #print s
+                    #print symname
+                    #print strings
+                    #print s.name_union.int_name.offset
+                    try:
+                    	n = strings[s.name_union.int_name.offset]
+                    except:
+                    	#TODO for some reason this happens
+                    	#wprint('attempting to access past end of string table')
+                    	continue
                     if symname == n:
                         return s
                 else:
