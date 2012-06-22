@@ -1,3 +1,6 @@
+does 32bit x86 position independant linking on a single object file.
+
+
 requires python 2.7 or python with argparse module installed.
 
 requires construct library.
