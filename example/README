@@ -1,0 +1,28 @@
+exampleshellcode.c contains some C code we are going to compile and link into shellcode.
+
+mingw32-gcc exampleshellcode.c -c
+ShellCodeLinker -r on exampleshellcode.o -o exampleshellcode.asm
+nasm -f bin -o exampleshellcode.bin exampleshellcode.asm
+
+finally we can compile the runner, this program is simple, it just mallocs some memory,
+sets the memory executable, casts it to a function pointer then runs it...
+
+*NOTE* currently the example doesnt support windows, if someone wants to do so,
+it is quite simple with VirtualProtect winapi  
+http://msdn.microsoft.com/en-us/library/windows/desktop/aa366898%28v=vs.85%29.aspx
+
+gcc examplerunner.c -o examplerunner
+
+./examplerunner
+
+>>>
+finished reading 109 bytes into memory
+making the malloced page executable!
+casting shellcode to pointer, calling, and printing return
+hellx world!
+<<<
+
+
+the x and hello world means the relocations and global variables were resolved properly!
+
+Ive included all stages except for the final runner.
